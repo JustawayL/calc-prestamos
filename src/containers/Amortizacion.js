@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import Parser from '../utils/Parser'
+import Formulario from './Formulario';
 class Amortizacion extends Component {
     constructor(){
         super();
         this.state = {
-            tablaA:[]
+            formData:{},
+            tablaA:[],
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    getTable(){
-        return fetch('https://world.openfoodfacts.org/api/v0/product/737628064502.json')
-        .then((res)=> res.json());
+    handleClick(e){
+        e.preventDefault();
+        fetch('https://world.openfoodfacts.org/api/v0/product/737628064502.json')
+        .then((res)=> res.json())
+        .then((data)=> this.setState({
+            formData:{},
+            tablaA : <Parser formD = {data}/>
+        },()=>console.log(this.state)))
+        .catch((error)=>console.log('No se realizo la operacion',error));
+
     }
-    componentWillMount(){
-        this.getTable().then((data)=> this.setState({
-            tablaA : data.product._keywords
-        },()=>console.log(this.state)));
-    }
-  render() {
+
+  render() {    
+      
     return (
       <div className="Amortizacion">
-            <Parser data={this.state.tablaA}/>
+        <div className="Formulario">
+            <Formulario onClick={this.handleClick}/>
+        </div>
+        <div className="tablaAmort">
+            {this.state.tablaA}
+        </div>      
       </div>
     );
   }

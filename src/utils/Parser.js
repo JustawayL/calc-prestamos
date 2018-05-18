@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class Parser extends Component {
   parseRow(){
     /*let elements =[];
@@ -19,6 +20,7 @@ class Parser extends Component {
   
   }
   render() {
+    console.log(this.props.formD);
     let data = [];
     for (let index = 0; index < 10; index++) {
       data.push(this.parseTable());
@@ -26,8 +28,7 @@ class Parser extends Component {
     
     
     return (
-      <div className="Parser">
-        <table className="tabla-amortizacion">
+        <table className="pure-table">
           <tr>
             <th>Pago</th>
             <th>Cuota</th>
@@ -37,7 +38,6 @@ class Parser extends Component {
           </tr>
          {data}
         </table>
-      </div>
     );
   }
 }
