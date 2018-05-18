@@ -1,23 +1,42 @@
 import React, { Component } from 'react';
 
 class Parser extends Component {
+  parseRow(){
+    /*let elements =[];
+    this.props.data.forEach(element => {
+      elements.push(<td key={element}>{element}</td>);
+    });*/
+    return <td>Holi</td>
+  
+  }
   parseTable(){
-    return<table id="tabla-amortizacion">
-        <tbody>
-          <tr id="row0">
-            <td id="cell0-0">{this.props.data[0]}</td>
-            <td id="cell0-1">{this.props.data[1]}</td>
-            <td id="cell0-2">{this.props.data[2]}</td>
-          </tr>
-        </tbody>
-      </table>
+    let data =[];
+    for (let index = 0; index < 5; index++) {
+      data.push(this.parseRow());
+      
+    }
+    return <tr>{data}</tr>;
   
   }
   render() {
-    let table = this.parseTable();
+    let data = [];
+    for (let index = 0; index < 10; index++) {
+      data.push(this.parseTable());
+    }
+    
+    
     return (
       <div className="Parser">
-        {table}
+        <table className="tabla-amortizacion">
+          <tr>
+            <th>Pago</th>
+            <th>Cuota</th>
+            <th>Interes</th>
+            <th>Amortizacion</th>
+            <th>Capital vivo</th>            
+          </tr>
+         {data}
+        </table>
       </div>
     );
   }
