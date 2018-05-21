@@ -11,3 +11,9 @@
 h1{
   text-align: center;
 }
+
+.icons{
+  margin: auto;
+  padding: 3em;
+  width: 25%;
+}

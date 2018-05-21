@@ -6,23 +6,6 @@ class Formulario extends Component {
         opciones : ['Anual','Trimestral','Semestral','Mensual']
     }
 
-    constructor(props){
-        super(props);
-        this.state={
-            formData:{
-                cantidad:"",
-                interes:"",
-                plazo:""
-            }
-        };
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
-    handleInputChange(e) {
-        let formData = Object.assign({}, this.state.formData);
-        formData[e.target.id] = e.target.value;
-        this.setState({formData},()=>console.log(this.state));
-    }
-
   render() {
     let opcionesAmortizacion = this.props.opciones.map(op => <option key={op} value={op}>{op}</option> )
     return (
@@ -30,31 +13,31 @@ class Formulario extends Component {
             <fieldset>
                 <div className="pure-control-group">
                     <label htmlFor="cantidad">Cantidad</label>
-                    <input id="cantidad" onChange={this.handleInputChange} type="text"/>
+                    <input id="cantidad" onChange={this.props.onChange} type="text"/>
                     <span className="pure-form-message-inline">This is a required field.</span>
                 </div>
 
                 <div className="pure-control-group">
                     <label htmlFor="interes">Interes</label>
-                    <input id="interes" type="text" onChange={this.handleInputChange}/>
+                    <input id="interes" type="text" onChange={this.props.onChange}/>
                 </div>
 
                 <div className="pure-control-group">
                     <label htmlFor="plazo">Plazo</label>
-                    <input id="plazo" type="text" onChange={this.handleInputChange}/>
-                    <select ref="opcionA"> 
+                    <input id="plazo" type="text" onChange={this.props.onChange}/>
+                    <select id="uPlazo" onChange={this.props.onChange}> 
                         <option key="años" value="años">años</option>
                         <option key="meses" value="meses">meses</option>
                     </select>   
                 </div>
                 <div className="pure-control-group">
                     <label htmlFor="forma de pago">Forma de pago</label>
-                    <select ref="opcionA"> 
+                    <select id="pago" onChange={this.props.onChange}> 
                         {opcionesAmortizacion}
                     </select>
                 </div>
                 <div className="pure-controls">
-                    <button className="pure-button pure-button-primary" onClick={this.props.onClick} >Submit</button>
+                    <button className="pure-button pure-button-primary" type="submit" onClick={this.props.onClick} >Submit</button>
                 </div>
             </fieldset>
         </form>
